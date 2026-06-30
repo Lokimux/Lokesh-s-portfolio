@@ -8,147 +8,170 @@
     
     <link rel="icon" type="image/x-icon" href="images/favicon.ico"> 
 
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Space+Grotesk:wght@500;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet"></noscript>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0V4LLanw2qksYuGW8XIR/zavEtgP/c2ZJqNlW0FpT4e/K5sY40t+0S5PzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="header">
+    <!-- Cursor glow that follows mouse -->
+    <div class="cursor-glow" id="cursor-glow"></div>
+
+    <!-- Mobile nav overlay -->
+    <div class="nav-overlay" id="nav-overlay"></div>
+
+    <header class="header" id="site-header">
         <div class="container">
             <h1 class="logo">Lokesh .K</h1>
-            <nav class="nav">
+            <nav class="nav" id="main-nav">
                 <ul class="nav-list">
-                    <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
-                    <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
-                    <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
-                    <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+                    <li class="nav-item"><a href="#home" class="nav-link active" id="nav-home">Home</a></li>
+                    <li class="nav-item"><a href="#about" class="nav-link" id="nav-about">About</a></li>
+                    <li class="nav-item"><a href="#skills" class="nav-link" id="nav-skills">Skills</a></li>
+                    <li class="nav-item"><a href="#projects" class="nav-link" id="nav-projects">Projects</a></li>
                     <li class="nav-item">
-                        <a href="images/Lokesh's resume.pdf" download="Lokesh_K_Resume.pdf" class="nav-link">
-                            Resume <i class="fas fa-download" style="margin-left: 5px;"></i>
+                        <a href="images/Lokesh's resume.pdf" download="Lokesh_K_Resume.pdf" class="nav-link" id="nav-resume">
+                            Resume <i class="fas fa-download"></i>
                         </a>
                     </li>
-                    <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                    <li class="nav-item"><a href="#contact" class="nav-link" id="nav-contact">Contact</a></li>
                 </ul>
             </nav>
-            <button class="nav-toggle" aria-label="toggle navigation">
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
                 <span class="hamburger"></span>
             </button>
         </div>
     </header>
 
     <main>
-        <section id="home" class="hero section reveal">
+        <!-- ==================== HERO ==================== -->
+        <section id="home" class="hero section">
+            <canvas id="particle-canvas"></canvas>
             <div class="container">
                 <p class="hero-subtitle">Hello, I'm</p>
-                <h2 class="hero-title">Lokesh K <span class="wave-emoji">👋</span></h2>
+                <h2 class="hero-title">
+                    <span class="name-highlight" id="typed-name"></span><span class="typed-cursor">|</span>
+                    <span class="wave-emoji">👋</span>
+                </h2>
                 <p class="hero-description">A passionate Electronics & Communication Systems graduate turning innovative ideas into efficient, real-world electronic solutions.</p>
-                <a href="#projects" class="btn primary-btn">Explore My Work <i class="fas fa-arrow-right"></i></a>
+                <a href="#projects" class="btn primary-btn" id="cta-explore">Explore My Work <i class="fas fa-arrow-right"></i></a>
             </div>
         </section>
 
-        <section id="about" class="about section reveal">
+        <!-- ==================== ABOUT ==================== -->
+        <section id="about" class="about section">
             <div class="container">
-                <h2 class="section-title">About Me</h2>
+                <h2 class="section-title" data-reveal="up"><span class="title-text">About Me</span></h2>
                 <div class="about-content">
-                    <div class="about-text">
+                    <div class="about-text" data-reveal="left">
                         <p>I'm Lokesh K, a passionate Electronics and Communication Systems graduate (B.Sc) with a strong foundation in electronics design, embedded systems, PCB development, and programming. I am eager to apply my academic knowledge and project experience to contribute effectively to team goals, optimize system performance, and drive innovation in technology.</p>
                         <p>With a blend of technical expertise, leadership qualities, critical thinking, and a problem-solving mindset, I am committed to building efficient and impactful electronic solutions for real-world challenges.</p>
                     </div>
-                    <div class="about-image">
-                        <img src="images/main_photo.jpg" alt="Lokesh K - Electronics & Embedded Systems Engineer">
+                    <div class="about-image" data-reveal="right">
+                        <div class="about-image-wrapper">
+                            <img src="images/main_photo.jpg" alt="Lokesh K - Electronics & Embedded Systems Engineer">
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="skills" class="skills section reveal">
+        <!-- ==================== SKILLS ==================== -->
+        <section id="skills" class="skills section">
             <div class="container">
-                <h2 class="section-title">Skills & Capabilities</h2>
+                <h2 class="section-title" data-reveal="up"><span class="title-text">Skills & Capabilities</span></h2>
                 <div class="skills-grid">
-                    <div class="skill-category">
+                    <div class="skill-category" data-reveal="up">
                         <i class="fas fa-microchip skill-icon"></i>
                         <h3>Technical Skills</h3>
-                        <ul>
-                            <li>PCB Circuit Board Design</li>
-                            <li>Embedded Systems</li>
-                            <li>Internet of Things (IoT)</li>
-                        </ul>
+                        <div class="skill-tags">
+                            <span class="skill-tag">PCB Circuit Board Design</span>
+                            <span class="skill-tag">Embedded Systems</span>
+                            <span class="skill-tag">Internet of Things (IoT)</span>
+                        </div>
                     </div>
-                    <div class="skill-category">
+                    <div class="skill-category" data-reveal="up">
                         <i class="fas fa-code skill-icon"></i>
                         <h3>Programming</h3>
-                        <ul>
-                            <li>Python Programming</li>
-                            <li>Embedded C</li>
-                            <li>C Programming</li>
-                            <li>MicroPython</li>
-                            <li>Arduino Programming</li>
-                        </ul>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Embedded C</span>
+                            <span class="skill-tag">C Programming</span>
+                            <span class="skill-tag">MicroPython</span>
+                            <span class="skill-tag">Arduino</span>
+                        </div>
                     </div>
-                    <div class="skill-category">
+                    <div class="skill-category" data-reveal="up">
                         <i class="fas fa-tools skill-icon"></i>
                         <h3>Software & Tools</h3>
-                        <ul>
-                            <li>Microsoft Excel</li>
-                            <li>Linux (Command Line & Scripting)</li>
-                            <li>Git & GitHub</li>
-                        </ul>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Microsoft Excel</span>
+                            <span class="skill-tag">Linux CLI & Scripting</span>
+                            <span class="skill-tag">Git & GitHub</span>
+                        </div>
                     </div>
-                    <div class="skill-category">
+                    <div class="skill-category" data-reveal="up">
                         <i class="fas fa-cube skill-icon"></i>
                         <h3>Microcontrollers & Boards</h3>
-                        <ul>
-                            <li>ESP32</li>
-                            <li>ESP8266</li>
-                            <li>STM32 (Blue Pill)</li>
-                            <li>Arduino Uno</li>
-                            <li>Arduino Nano</li>
-                            <li>Raspberry Pi Pico</li>
-                        </ul>
+                        <div class="skill-tags">
+                            <span class="skill-tag">ESP32</span>
+                            <span class="skill-tag">ESP8266</span>
+                            <span class="skill-tag">STM32 (Blue Pill)</span>
+                            <span class="skill-tag">Arduino Uno</span>
+                            <span class="skill-tag">Arduino Nano</span>
+                            <span class="skill-tag">Raspberry Pi Pico</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="projects" class="projects section reveal">
+        <!-- ==================== PROJECTS ==================== -->
+        <section id="projects" class="projects section">
             <div class="container">
-                <h2 class="section-title">Featured Projects</h2>
+                <h2 class="section-title" data-reveal="up"><span class="title-text">Featured Projects</span></h2>
                 <div class="project-grid">
-                    <div class="project-card">
-                        <img src="images/wheather.jpeg" alt="Smart Weather Station and Air Quality Monitoring System" class="project-image">
+                    <div class="project-card" data-reveal="up" data-tilt>
+                        <div class="project-image-wrapper">
+                            <img src="images/wheather.jpeg" alt="Smart Weather Station and Air Quality Monitoring System" class="project-image">
+                        </div>
                         <div class="project-content">
-                            <h3><span role="img" aria-label="weather-emoji">🌦️</span> Smart Weather Station & Air Quality Monitoring System</h3>
+                            <h3>🌦️ Smart Weather Station & Air Quality Monitoring System</h3>
                             <p class="project-tech"><i class="fas fa-microchip"></i> ESP32, MQ-135, DHT11, Rain Sensor, LDR Sensor, BMP280, Telegram Bot</p>
                             <p>An advanced IoT device that monitors temperature, humidity, air pressure, rainfall, light intensity, and air quality (CO₂ & harmful gases). Real-time sensor data is sent to users via a Telegram Bot, enabling instant remote updates and environmental monitoring from anywhere.</p>
                             <div class="project-links">
-                                <a href="https://github.com/Lokimux/iot-weather-air-quality-monitoring" target="_blank" class="project-link">GitHub <i class="fab fa-github"></i></a>
+                                <a href="https://github.com/Lokimux/iot-weather-air-quality-monitoring" target="_blank" class="project-link" id="project-weather-github">GitHub <i class="fab fa-github"></i></a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="project-card">
-                        <img src="images/Home Automation USING ESP8266.jpeg" alt="Home Automation Using ESP8266" class="project-image">
+                    <div class="project-card" data-reveal="up" data-tilt>
+                        <div class="project-image-wrapper">
+                            <img src="images/Home Automation USING ESP8266.jpeg" alt="Home Automation Using ESP8266" class="project-image">
+                        </div>
                         <div class="project-content">
-                            <h3><span role="img" aria-label="home-emoji">🏡</span> Home Automation Using ESP8266</h3>
+                            <h3>🏡 Home Automation Using ESP8266</h3>
                             <p class="project-tech"><i class="fas fa-microchip"></i> ESP8266, Relay Module, Blynk App</p>
                             <p>A smart home solution designed to control electrical appliances such as lights and fans via Wi-Fi. Users can operate devices remotely using the Blynk mobile app, making everyday life more convenient, secure, and energy-efficient.</p>
                             <div class="project-links">
-                                <a href="https://github.com/Lokimux/Home-Automation-Using-ESP8266" target="_blank" class="project-link">GitHub <i class="fab fa-github"></i></a>
+                                <a href="https://github.com/Lokimux/Home-Automation-Using-ESP8266" target="_blank" class="project-link" id="project-home-github">GitHub <i class="fab fa-github"></i></a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="project-card">
-                        <img src="images/plant.jpeg" alt="Smart Irrigation System" class="project-image">
+                    <div class="project-card" data-reveal="up" data-tilt>
+                        <div class="project-image-wrapper">
+                            <img src="images/plant.jpeg" alt="Smart Irrigation System" class="project-image">
+                        </div>
                         <div class="project-content">
-                            <h3><span role="img" aria-label="water-drop-emoji">💧</span> Smart Irrigation System</h3>
+                            <h3>💧 Smart Irrigation System</h3>
                             <p class="project-tech"><i class="fas fa-microchip"></i> ESP8266, Soil Moisture Sensor, DHT11, Relay Module, Blynk App</p>
                             <p>An intelligent watering system that checks soil moisture and environmental data to automate irrigation. When dry conditions are detected, it activates a pump through a relay. The Blynk app provides real-time remote monitoring and control, improving crop health and water efficiency.</p>
                             <div class="project-links">
-                                <a href="https://github.com/Lokimux/Smart-Irrigation-System-ESP8266" target="_blank" class="project-link">GitHub <i class="fab fa-github"></i></a>
+                                <a href="https://github.com/Lokimux/Smart-Irrigation-System-ESP8266" target="_blank" class="project-link" id="project-irrigation-github">GitHub <i class="fab fa-github"></i></a>
                             </div>
                         </div>
                     </div>
@@ -156,16 +179,17 @@
             </div>
         </section>
 
-        <section id="contact" class="contact section reveal">
+        <!-- ==================== CONTACT ==================== -->
+        <section id="contact" class="contact section">
             <div class="container">
-                <h2 class="section-title">Get In Touch</h2>
-                <p class="contact-intro">I'm always open to new opportunities and collaborations. Feel free to reach out!</p>
-                <div class="contact-links">
-                    <a href="mailto:klokeshk32@gmail.com" class="contact-link"><i class="fas fa-envelope"></i> klokeshk32@gmail.com</a>
-                    <a href="https://www.linkedin.com/in/lokeshk07/" target="_blank" class="contact-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                    <a href="https://github.com/Lokimux" target="_blank" class="contact-link"><i class="fab fa-github"></i> GitHub</a>
+                <h2 class="section-title" data-reveal="up"><span class="title-text">Get In Touch</span></h2>
+                <p class="contact-intro" data-reveal="up">I'm always open to new opportunities and collaborations. Feel free to reach out!</p>
+                <div class="contact-links" data-reveal="scale">
+                    <a href="mailto:klokeshk32@gmail.com" class="contact-link" id="contact-email"><i class="fas fa-envelope"></i> klokeshk32@gmail.com</a>
+                    <a href="https://www.linkedin.com/in/lokeshk07/" target="_blank" class="contact-link" id="contact-linkedin"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                    <a href="https://github.com/Lokimux" target="_blank" class="contact-link" id="contact-github"><i class="fab fa-github"></i> GitHub</a>
                 </div>
-                <p class="contact-cta">Let's build something impactful together.</p>
+                <p class="contact-cta" data-reveal="up">Let's build something impactful together.</p>
             </div>
         </section>
     </main>
